@@ -1,3 +1,4 @@
+# T06: CI Gate Before Deployment
 name: CI
 
 on:
@@ -44,6 +45,14 @@ jobs:
             "tasks": ["T01", "T03"],
             "artifact": "site-dist-${{ github.sha }}",
             "workflowRun": "${{ github.run_id }}"
+            "publicUrl": "${PUBLIC_URL}",
+            "config": {
+              "task": "T05",
+              "publicUrlConfigured": true,
+              "privateTokenConfigured": true,
+              "secretsRedacted": true
+            },
+            "tasks": ["T01", "T05", "T06"]
           }
           EOF
 
