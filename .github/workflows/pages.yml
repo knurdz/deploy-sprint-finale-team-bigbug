@@ -46,12 +46,6 @@ jobs:
             echo "sha=${{ github.event.workflow_run.head_sha }}" >> $GITHUB_OUTPUT
           fi
 
-      - name: Build
-        env:
-          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
-          OPENWEATHER_CITY: Colombo,LK
-        run: npm run build
-        working-directory: team-site
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
@@ -59,6 +53,13 @@ jobs:
           path: team-site/dist
           github-token: ${{ secrets.GITHUB_TOKEN }}
           run-id: ${{ steps.params.outputs.run_id }}
+
+      - name: Generate deploy-time weather data
+        env:
+          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+          OPENWEATHER_CITY: Colombo,LK
+        run: node scripts/generate-weather.mjs
+        working-directory: team-site
 
       - name: Generate status endpoint
         env:
