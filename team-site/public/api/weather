@@ -1,0 +1,11 @@
+{
+  "task": "T07",
+  "provider": "openweather",
+  "city": "Colombo",
+  "temp": 28.5,
+  "condition": "Clouds",
+  "description": "scattered clouds",
+  "units": "metric",
+  "keyExposed": false,
+  "configured": true
+}

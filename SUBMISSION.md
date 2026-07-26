@@ -36,7 +36,7 @@ Use this section for short public notes and links. Full task instructions and ch
 | T04 | #5 | [TBD] | Added manual workflow_dispatch rollback workflow (.github/workflows/rollback.yml) accepting release_ref input to redeploy known-good release references without editing source code. <!-- AI-REVIEW-MARKER: participant must manually remove this marker --> |
 | T05 | #3 | [TBD] | Moved runtime config to GitHub Secrets (`PUBLIC_URL`, `PRIVATE_DEPLOY_TOKEN`) and output safe redacted boolean flags in `/status`. |
 | T06 |  |  |  |
-| T07 |  |  |  |
+| T07 | [TBD] | `/api/weather` & `/status` | Added OpenWeather API widget & deploy-time weather generator script (`generate-weather.mjs`); stored key in `OPENWEATHER_API_KEY` GitHub Secret without client exposure. <!-- AI-REVIEW-MARKER: participant must manually remove this marker --> |
 | T08 |  |  |  |
 | T09 |  |  |  |
 | T10 |  |  |  |
@@ -63,4 +63,5 @@ Use this section for short public notes and links. Full task instructions and ch
 
 ## Public Notes
 
-List anything judges should know without exposing credentials or private infrastructure details.
+### T07 Judge Question: Why is the OpenWeather API key stored as a GitHub Secret instead of a `VITE_*` variable?
+Vite environment variables prefixed with `VITE_*` (such as `VITE_OPENWEATHER_API_KEY`) are statically replaced and bundled directly into plain-text client JavaScript files during `vite build`. Any user visiting the website could open browser Developer Tools, inspect the static JS bundles or network requests, and extract the API key. By storing `OPENWEATHER_API_KEY` as a GitHub Secret, the key exists solely in the server-side CI/CD execution environment. During build/deployment, our server-side process (`generate-weather.mjs`) calls OpenWeather and outputs a safe, sanitized JSON payload (`/api/weather`) containing only the weather results (`temp`, `city`, `weather.provider=openweather`), ensuring the raw secret is never transmitted to or accessible by client browsers.
