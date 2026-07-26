@@ -65,7 +65,6 @@ jobs:
       - name: Request deploy from organizer deployer
         env:
           DEPLOYER_DISPATCH_TOKEN: ${{ secrets.DEPLOYER_DISPATCH_TOKEN }}
-          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
           DEPLOYER_REPO: knurdz/deploy-sprint-deployer
           TEAM_REPO: ${{ github.repository }}
           TEAM_SHA: ${{ steps.request.outputs.sha }}
