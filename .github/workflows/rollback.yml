@@ -10,9 +10,6 @@ on:
 permissions:
   contents: read
 
-# AI-REVIEW-MARKER: participant must manually remove this marker
-# PR-AGENT-MARKER: participant must manually remove this marker
-
 jobs:
   rollback:
     name: Rollback to known-good release

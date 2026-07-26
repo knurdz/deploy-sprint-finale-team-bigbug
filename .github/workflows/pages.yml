@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read 
+  contents: read
   pages: write
   id-token: write
 
@@ -83,7 +83,7 @@ jobs:
               "provider": "openweather",
               "configured": true
             },
-            "tasks": ["T01", "T03", "T05", "T07"]
+            "tasks": ["T01", "T03", "T05", "T07"],
             "artifact": "site-dist-${{ steps.params.outputs.sha }}",
             "workflowRun": "${{ steps.params.outputs.run_id }}"
           }
@@ -93,7 +93,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: team-site/dist
-  
+
   deploy:
     environment:
       name: github-pages
