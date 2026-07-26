@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AI-REVIEW-MARKER: participant must manually remove this marker
+
 # T19 - Post-Deploy Smoke Tests
 set -euo pipefail
 
