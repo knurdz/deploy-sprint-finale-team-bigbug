@@ -45,6 +45,7 @@ Use this section for short public notes and links. Full task instructions and ch
 | T13  | #15 | [TBD]    | Integrated organizer feature bundle: `ReleaseReadiness.tsx` component, `releaseReadiness.ts` data, and `check-release-readiness.mjs` validation script. Removed `AI-REVIEW-MARKER:T11`. Validation passes with `npm run check:readiness`. |
 | T14  | #16 | [TBD]    | Added multi-stage Dockerfile (node:20-alpine build + nginx:alpine serve) and .dockerignore inside team-site/. Uses npm ci from lockfile. Image serves static Vite output on port 80.    |
 | T15  | #18 | [TBD]    | Added feature flag utility and conditionally rendered LearningVelocity component; populated `/status` with redacted safe evidence. |
+| T21  |     | [TBD]    | Added explicit `permissions` blocks and `concurrency` groups to workflows to follow least-privilege principles and prevent concurrent deployments. |
 | T16  |     |          |                                                                                                                                                                                          |
 | T17  |     |          |                                                                                                                                                                                          |
 | T18  |     |          |                                                                                                                                                                                          |

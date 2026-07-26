@@ -10,6 +10,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: request-organizer-deploy
+  cancel-in-progress: false
+
 jobs:
   rollback:
     name: Rollback to known-good release
