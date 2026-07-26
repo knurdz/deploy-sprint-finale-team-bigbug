@@ -39,7 +39,7 @@ Use this section for short public notes and links. Full task instructions and ch
 | T07  | #7    | [TBD]    | Added OpenWeather API widget & deploy-time weather generator script (`generate-weather.mjs`); stored key in `OPENWEATHER_API_KEY` GitHub Secret without client exposure.             |
 | T08  | #8    | [TBD]    | Fetched and cleanly rebased the organizer's 'rebase-feature' branch onto main. Verified integration of the LearningVelocity component.                                               |
 | T09  | #9    | [TBD]    | Resolved merge conflict in deadlines.ts by preserving both deadline cards.                                                                                                           |
-| T10  |       |          |                                                                                                                                                                                      |
+| T10  | #<PR> | [TBD]    | Added Web3Forms Contact modal & deploy-time generator (`generate-contact.mjs`); configured `WEB3FORMS_ACCESS_KEY` GitHub Secret and updated `/status` with `contact.provider=web3forms`.  |
 | T11  |       |          |                                                                                                                                                                                      |
 | T12  |       |          |                                                                                                                                                                                      |
 | T13  |       |          |                                                                                                                                                                                      |

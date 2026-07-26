@@ -60,6 +60,11 @@ jobs:
           OPENWEATHER_CITY: Colombo,LK
         run: node scripts/generate-weather.mjs
         working-directory: team-site
+      - name: Generate deploy-time contact data
+        env:
+          WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
+        run: node scripts/generate-contact.mjs
+        working-directory: team-site
 
       - name: Generate status endpoint
         env:
@@ -81,10 +86,14 @@ jobs:
               "secretsRedacted": true
             },
             "weather": {
-              "provider": "openweather",
-              "configured": true
-            },
-            "tasks": ["T01", "T03", "T05", "T07"],
+            "provider": "openweather",
+            "configured": true
+          },
+          "contact": {
+            "provider": "web3forms",
+            "configured": true
+          },
+          "tasks": ["T01", "T03", "T05", "T07", "T10"],
             "artifact": "site-dist-${{ steps.params.outputs.sha }}",
             "workflowRun": "${{ steps.params.outputs.run_id }}"
           }

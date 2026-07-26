@@ -9,5 +9,9 @@
   "weather": {
     "provider": "openweather",
     "configured": true
+  },
+  "contact": {
+    "provider": "web3forms",
+    "configured": true
   }
 }
