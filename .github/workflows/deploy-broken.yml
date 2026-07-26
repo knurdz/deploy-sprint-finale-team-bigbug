@@ -16,8 +16,17 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: npm run build
-      - name: Upload wrong directory
+      - name: Upload dist directory
         uses: actions/upload-artifact@v4
         with:
           name: broken-deploy-output
-          path: build
+          path: team-site/dist
+      # AI-REVIEW-MARKER: participant must manually remove this marker
+      - name: Prepare recovery request
+        env:
+          RECOVERY_REF: ${{ github.sha }}
+        run: |
+          test -n "${RECOVERY_REF:?RECOVERY_REF required}"
+          printf '{"task":"T26","recovery_ref":"%s"}\n' "$RECOVERY_REF" > recovery-request.json
+      - name: Record recovery attempt
+        run: echo "T26 incident recovery through Actions"
