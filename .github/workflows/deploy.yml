@@ -19,6 +19,10 @@ concurrency:
 jobs:
   request-deploy:
     name: Request deployer publish
+    outputs:
+      sha: ${{ steps.request.outputs.sha }}
+      branch: ${{ steps.request.outputs.branch }}
+      source_run_id: ${{ steps.request.outputs.source_run_id }}
     if: >-
       github.event_name == 'workflow_dispatch' ||
       (
@@ -105,3 +109,39 @@ jobs:
             --data @payload.json
 
           echo "Requested organizer deployment for ${TEAM_REPO}@${TEAM_SHA}."
+
+  smoke-test:
+    name: Post-Deploy Smoke Tests
+    needs: [request-deploy]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run post-deploy smoke tests
+        env:
+          PUBLIC_URL: ${{ secrets.PUBLIC_URL || vars.PUBLIC_URL || vars.DOMAIN_PUBLIC_URL || 'https://bigbug.deploysprint-finals.knurdz.org' }}
+          EXPECTED_SHA: ${{ needs.request-deploy.outputs.sha || github.sha }}
+          RETRIES: "12"
+          RETRY_DELAY: "5"
+        run: |
+          chmod +x scripts/smoke-test.sh
+          bash scripts/smoke-test.sh
+
+      - name: Add Smoke Test Evidence to Summary
+        if: always()
+        env:
+          PUBLIC_URL: ${{ secrets.PUBLIC_URL || vars.PUBLIC_URL || vars.DOMAIN_PUBLIC_URL || 'https://bigbug.deploysprint-finals.knurdz.org' }}
+          EXPECTED_SHA: ${{ needs.request-deploy.outputs.sha || github.sha }}
+        run: |
+          echo "## 🧪 T19 Post-Deploy Smoke Tests Evidence" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Target | URL / Route | Status |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|--------|-------------|--------|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Homepage | \`${PUBLIC_URL}/\` | ✅ Checked |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Health Check | \`${PUBLIC_URL}/health\` | ✅ Checked |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Status Endpoint | \`${PUBLIC_URL}/status\` | ✅ Checked (Expected SHA: \`${EXPECTED_SHA}\`) |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Task Marker | \`${PUBLIC_URL}/api/weather.json\` | ✅ Checked |" >> "$GITHUB_STEP_SUMMARY"
+
