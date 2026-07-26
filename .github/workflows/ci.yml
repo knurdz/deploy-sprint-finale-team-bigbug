@@ -69,7 +69,7 @@ jobs:
               "configured": true
             },
               
-              "tasks": ["T01", "T03", "T05", "T06", "T07", "T12"]
+              "tasks": ["T01", "T03", "T05", "T06", "T07", "T12", "T14"]
             }
             EOF
 
