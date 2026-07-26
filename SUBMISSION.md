@@ -32,7 +32,7 @@ Use this section for short public notes and links. Full task instructions and ch
 | ---- | --- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | T01  | #2  | [TBD]    | Added static `/health` endpoint and dynamic `/status` metadata via CI/Pages pipelines.                                                                                               |
 | T02  | #4  | [TBD]    | Connected custom domain.                                                                                                                                                             |
-| T03  |     |          |                                                                                                                                                                                      |
+| T03  |     |          | Added a deploy-dry-run job in CI and modified pages.yml to download the CI build artifact rather than rebuilding source code.                                                        |
 | T04  | #5  | [TBD]    | Added manual workflow_dispatch rollback workflow (.github/workflows/rollback.yml) accepting release_ref input to redeploy known-good release references without editing source code. |
 | T05  | #3  | [TBD]    | Moved runtime config to GitHub Secrets (`PUBLIC_URL`, `PRIVATE_DEPLOY_TOKEN`) and output safe redacted boolean flags in `/status`.                                                   |
 | T06  |     |          |                                                                                                                                                                                      |
