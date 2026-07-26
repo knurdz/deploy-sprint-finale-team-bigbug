@@ -89,15 +89,22 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
-          name: pr-preview-${{ github.event.pull_request.number }}-${{ github.sha }}
+          name: preview-${{ github.event.pull_request.head.sha }}
           path: team-site/dist
 
       - name: Add PR Preview to Workflow Summary
         if: github.event_name == 'pull_request'
         run: |
-          echo "## PR Preview" >> $GITHUB_STEP_SUMMARY
-          echo "A preview artifact named \`pr-preview-${{ github.event.pull_request.number }}-${{ github.sha }}\` has been uploaded." >> $GITHUB_STEP_SUMMARY
-          echo "Download it from the artifacts section of this workflow run to preview the changes locally." >> $GITHUB_STEP_SUMMARY
+          echo "## 🔍 PR Preview" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Field | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| **PR** | #${{ github.event.pull_request.number }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`${{ github.event.pull_request.head.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Artifact** | \`preview-${{ github.event.pull_request.head.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Branch** | \`${{ github.head_ref }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Download the preview artifact from the **Artifacts** section of this workflow run to preview the changes locally." >> $GITHUB_STEP_SUMMARY
 
   deploy-dry-run:
     needs: build
