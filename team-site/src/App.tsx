@@ -19,6 +19,7 @@ import { deadlineCards } from './data/deadlines';
 import { sprintStats } from './data/stats';
 import { getAverageProgress } from './utils/metrics';
 import { ContactModal } from './components/ContactModal';
+import { ReleaseReadiness } from './components/ReleaseReadiness';
 
 
 export function App() {
@@ -124,6 +125,7 @@ export function App() {
         </section>
 
         <LearningVelocity courses={courses} />
+        <ReleaseReadiness />
 
         <section className="contentGrid">
           <div className="panel" id="courses">
