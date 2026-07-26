@@ -34,7 +34,7 @@ Use this section for short public notes and links. Full task instructions and ch
 | T02 |  |  |  |
 | T03 |  |  |  |
 | T04 |  |  |  |
-| T05 |  |  |  |
+| T05 | [TBD] | [TBD] | Moved runtime config to GitHub Secrets (`PUBLIC_URL`, `PRIVATE_DEPLOY_TOKEN`) and output safe redacted boolean flags in `/status`. |
 | T06 |  |  |  |
 | T07 |  |  |  |
 | T08 |  |  |  |
