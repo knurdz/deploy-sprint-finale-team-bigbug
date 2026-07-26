@@ -3,8 +3,7 @@
 # Symlinked-release deploy script: deploys a candidate release into a
 # separate directory, health-checks it, and only switches the "current"
 # symlink after success. Preserves the previous known-good release on failure.
-#
-# AI-REVIEW-MARKER: participant must manually remove this marker
+
 set -euo pipefail
 
 # --- Configuration -----------------------------------------------------------
