@@ -93,7 +93,7 @@ jobs:
             "provider": "web3forms",
             "configured": true
           },
-          "tasks": ["T01", "T03", "T05", "T07", "T10", "T12", "T14", "T21"],
+          "tasks": ["T01", "T03", "T05", "T07", "T10", "T12", "T14", "T17", "T21"],
             "artifact": "site-dist-${{ steps.params.outputs.sha }}",
             "workflowRun": "${{ steps.params.outputs.run_id }}"
           }
