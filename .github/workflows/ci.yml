@@ -79,7 +79,6 @@ jobs:
           name: site-dist-${{ github.sha }}
           path: team-site/dist
 
-      # AI-REVIEW-MARKER: participant must manually remove this marker
       - name: Upload PR Preview Artifact
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
