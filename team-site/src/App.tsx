@@ -20,7 +20,7 @@ import { sprintStats } from './data/stats';
 import { getAverageProgress } from './utils/metrics';
 import { ContactModal } from './components/ContactModal';
 import { ReleaseReadiness } from './components/ReleaseReadiness';
-
+import { featureFlags } from './utils/featureFlags';
 
 export function App() {
   const averageProgress = getAverageProgress(courses);
@@ -124,7 +124,7 @@ export function App() {
           ))}
         </section>
 
-        <LearningVelocity courses={courses} />
+        {featureFlags().showInsights && <LearningVelocity courses={courses} />}
         <ReleaseReadiness />
 
         <section className="contentGrid">
