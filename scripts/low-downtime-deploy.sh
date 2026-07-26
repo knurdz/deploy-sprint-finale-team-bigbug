@@ -129,6 +129,12 @@ handle_failure() {
     fi
   fi
 
+  # T28: Partial cleanup of failed candidate directory
+  if [ -d "${CANDIDATE_DIR}" ]; then
+    log "Cleaning up failed candidate directory: ${CANDIDATE_DIR}"
+    rm -rf "${CANDIDATE_DIR}"
+  fi
+
   # Write failure manifest
   cat > "${DEPLOY_BASE}/release-manifest.json" <<MANIFEST
 {
@@ -174,6 +180,25 @@ cleanup_old_releases() {
 
 # --- Main Execution -----------------------------------------------------------
 main() {
+  # Ensure base directory exists for lockfile
+  mkdir -p "${DEPLOY_BASE}"
+
+  # T28: Race-Safe Locking
+  exec 9> "${DEPLOY_BASE}/deploy.lock"
+  if ! flock -n 9; then
+    log "ERROR: Another deployment is currently in progress. Exiting."
+    exit 1
+  fi
+
+  # T28: Idempotency Check
+  if [ -L "${CURRENT_LINK}" ]; then
+    CURRENT_TARGET=$(basename "$(readlink -f "${CURRENT_LINK}")")
+    if [ "${CURRENT_TARGET}" = "${RELEASE_SHA}" ]; then
+      log "Idempotency check: Release ${RELEASE_SHA} is already active. Exiting successfully."
+      exit 0
+    fi
+  fi
+
   log "=============================================="
   log "T17 Low-Downtime Release Strategy"
   log "=============================================="
