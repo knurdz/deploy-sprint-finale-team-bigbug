@@ -31,7 +31,7 @@ Use this section for short public notes and links. Full task instructions and ch
 | Task | PR | Evidence | Notes |
 | --- | --- | --- | --- |
 | T01 | [TBD] | [TBD] | Added static `/health` endpoint and dynamic `/status` metadata via CI/Pages pipelines. |
-| T02 |  |  |  |
+| T02 | [TBD] | [TBD] | Connected custom domain.  |
 | T03 |  |  |  |
 | T04 |  |  |  |
 | T05 | [TBD] | [TBD] | Moved runtime config to GitHub Secrets (`PUBLIC_URL`, `PRIVATE_DEPLOY_TOKEN`) and output safe redacted boolean flags in `/status`. |
