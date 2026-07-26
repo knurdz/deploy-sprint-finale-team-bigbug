@@ -21,7 +21,6 @@ jobs:
         with:
           name: broken-deploy-output
           path: team-site/dist
-      # AI-REVIEW-MARKER: participant must manually remove this marker
       - name: Prepare recovery request
         env:
           RECOVERY_REF: ${{ github.sha }}
