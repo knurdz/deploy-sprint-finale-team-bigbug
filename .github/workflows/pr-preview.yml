@@ -4,6 +4,13 @@ name: PR Preview
 on:
   pull_request:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-preview-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   preview:
     runs-on: ubuntu-latest

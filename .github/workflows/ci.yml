@@ -7,6 +7,14 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -75,7 +83,7 @@ jobs:
               "showInsights": ${{ env.FEATURE_SHOW_INSIGHTS == 'true' }},
               "valueRedacted": true
             },
-            "tasks": ["T01", "T03", "T05", "T06", "T07", "T12", "T14", "T15", "T17", "T19"]
+            "tasks": ["T01", "T03", "T05", "T06", "T07", "T12", "T14", "T15", "T17", "T19","T21"]
           }
           EOF
 
