@@ -4,11 +4,11 @@ Complete this file on `main` as tasks are completed. Do not paste secrets, priva
 
 ## Team
 
-- Team name: BigBug
-- Team members: [Member1, Member2, Member3]
-- Live IP URL: http://20.3.100.134
-- Assigned domain URL: https://bigbug.deploysprint-finals.knurdz.org
-- Repository URL: https://github.com/knurdz/deploy-sprint-finale-team-bigbug
+- Team name:
+- Team members:
+- Live IP URL:
+- Assigned domain URL:
+- Repository URL:
 
 ## Release Evidence
 
@@ -30,7 +30,7 @@ Use this section for short public notes and links. Full task instructions and ch
 
 | Task | PR | Evidence | Notes |
 | --- | --- | --- | --- |
-| T01 | [TBD] | [TBD] | Added static `/health` endpoint and dynamic `/status` metadata via CI/Pages pipelines. |
+| T01 |  |  |  |
 | T02 |  |  |  |
 | T03 |  |  |  |
 | T04 |  |  |  |
