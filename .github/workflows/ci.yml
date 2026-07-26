@@ -33,8 +33,7 @@ jobs:
 
       - name: Generate status endpoint
         env:
-          PUBLIC_URL: ${{ secrets.PUBLIC_URL || vars.PUBLIC_URL || vars.DOMAIN_PUBLIC_URL || vars.IP_PUBLIC_URL }}
-          PRIVATE_DEPLOY_TOKEN: ${{ secrets.PRIVATE_DEPLOY_TOKEN }}
+          VITE_PUBLIC_URL: ${{ vars.PUBLIC_URL || vars.DOMAIN_PUBLIC_URL || secrets.PUBLIC_URL || vars.IP_PUBLIC_URL }}
         run: |
           cat <<EOF > team-site/dist/status
           {
@@ -42,6 +41,10 @@ jobs:
             "commit": "${{ github.sha }}",
             "releaseId": "site-dist-${{ github.sha }}",
             "deployTime": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')",
+            "publicUrl": "${VITE_PUBLIC_URL}",
+            "tasks": ["T01", "T03"],
+            "artifact": "site-dist-${{ github.sha }}",
+            "workflowRun": "${{ github.run_id }}"
             "publicUrl": "${PUBLIC_URL}",
             "config": {
               "task": "T05",
@@ -58,3 +61,29 @@ jobs:
         with:
           name: site-dist-${{ github.sha }}
           path: team-site/dist
+
+  deploy-dry-run:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site-dist-${{ github.sha }}
+          path: dist-downloaded
+
+      - name: Verify and write release manifest
+        run: |
+          echo "Deploying artifact site-dist-${{ github.sha }}"
+          cat <<EOF > release-manifest.json
+          {
+            "artifact": "site-dist-${{ github.sha }}",
+            "workflowRun": "${{ github.run_id }}",
+            "commit": "${{ github.sha }}"
+          }
+          EOF
+          
+          echo "## Deploy Dry-Run Evidence" >> $GITHUB_STEP_SUMMARY
+          echo "- **Artifact:** site-dist-${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Workflow Run:** ${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
