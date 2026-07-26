@@ -83,7 +83,21 @@ jobs:
               "showInsights": ${{ env.FEATURE_SHOW_INSIGHTS == 'true' }},
               "valueRedacted": true
             },
-            "tasks": ["T01", "T03", "T05", "T06", "T07", "T12", "T14", "T15", "T17", "T19","T21"]
+            "tasks": ["T01", "T03", "T05", "T06", "T07", "T12", "T14", "T15", "T17", "T19", "T21", "T23"]
+          }
+          EOF
+
+      - name: Generate release manifest
+        run: |
+          cat <<EOF > team-site/dist/release.json
+          {
+            "commit": "${{ github.sha }}",
+            "artifact": "site-dist-${{ github.sha }}",
+            "workflowRun": "${{ github.run_id }}",
+            "repository": "${{ github.repository }}",
+            "branch": "${{ github.ref_name }}",
+            "buildTime": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')",
+            "releaseId": "site-dist-${{ github.sha }}"
           }
           EOF
 
