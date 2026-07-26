@@ -30,11 +30,11 @@ Use this section for short public notes and links. Full task instructions and ch
 
 | Task | PR | Evidence | Notes |
 | --- | --- | --- | --- |
-| T01 | #2 | http://20.3.100.134/health | Added static `/health` endpoint and dynamic `/status` metadata via CI/Pages pipelines. |
-| T02 |  |  |  |
+| T01 | #2 | [TBD] | Added static `/health` endpoint and dynamic `/status` metadata via CI/Pages pipelines. |
+| T02 | #4 | [TBD] | Connected custom domain.  |
 | T03 |  |  |  |
-| T04 | [TBD] | [TBD] | Added manual workflow_dispatch rollback workflow (.github/workflows/rollback.yml) accepting release_ref input to redeploy known-good release references without editing source code. <!-- AI-REVIEW-MARKER: participant must manually remove this marker --> |
-| T05 | [TBD] | [TBD] | Moved runtime config to GitHub Secrets (`PUBLIC_URL`, `PRIVATE_DEPLOY_TOKEN`) and output safe redacted boolean flags in `/status`. |
+| T04 | #5 | [TBD] | Added manual workflow_dispatch rollback workflow (.github/workflows/rollback.yml) accepting release_ref input to redeploy known-good release references without editing source code. <!-- AI-REVIEW-MARKER: participant must manually remove this marker --> |
+| T05 | #3 | [TBD] | Moved runtime config to GitHub Secrets (`PUBLIC_URL`, `PRIVATE_DEPLOY_TOKEN`) and output safe redacted boolean flags in `/status`. |
 | T06 |  |  |  |
 | T07 |  |  |  |
 | T08 |  |  |  |
