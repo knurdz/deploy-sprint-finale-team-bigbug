@@ -35,7 +35,7 @@ Use this section for short public notes and links. Full task instructions and ch
 | T03  |     |          |                                                                                                                                                                                      |
 | T04  | #5  | [TBD]    | Added manual workflow_dispatch rollback workflow (.github/workflows/rollback.yml) accepting release_ref input to redeploy known-good release references without editing source code. |
 | T05  | #3  | [TBD]    | Moved runtime config to GitHub Secrets (`PUBLIC_URL`, `PRIVATE_DEPLOY_TOKEN`) and output safe redacted boolean flags in `/status`.                                                   |
-| T06  |     |          |                                                                                                                                                                                      |
+| T06  | [TBD] | [TBD] | Workflow explicitly builds on push/PR with npm ci and node 20, gates deployment. |
 | T07  |     |          |                                                                                                                                                                                      |
 | T08  |     |          |                                                                                                                                                                                      |
 | T09  |     |          |                                                                                                                                                                                      |
