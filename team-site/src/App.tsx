@@ -17,6 +17,8 @@ import { courses } from './data/courses';
 import { deadlineCards } from './data/deadlines';
 import { sprintStats } from './data/stats';
 import { getAverageProgress } from './utils/metrics';
+import { ContactModal } from './components/ContactModal';
+
 
 export function App() {
   const averageProgress = getAverageProgress(courses);
@@ -75,6 +77,26 @@ export function App() {
             <Bell size={20} />
           </button>
         </header>
+
+        <header className="topbar">
+          <div>
+            <p className="eyebrow">Qualifier Dashboard</p>
+            <h1>Learning operations at a glance</h1>
+          </div>
+
+          <label className="searchBox">
+            <Search size={18} />
+            <input aria-label="Search courses" placeholder="Search courses" />
+          </label>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <ContactModal />
+            <button className="iconButton" aria-label="Notifications">
+              <Bell size={20} />
+            </button>
+          </div>
+        </header>
+
 
         <section className="heroBand" id="overview">
           <div>

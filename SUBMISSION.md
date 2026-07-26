@@ -36,10 +36,11 @@ Use this section for short public notes and links. Full task instructions and ch
 | T04  | #5    | [TBD]    | Added manual workflow_dispatch rollback workflow (.github/workflows/rollback.yml) accepting release_ref input to redeploy known-good release references without editing source code. |
 | T05  | #3    | [TBD]    | Moved runtime config to GitHub Secrets (`PUBLIC_URL`, `PRIVATE_DEPLOY_TOKEN`) and output safe redacted boolean flags in `/status`.                                                   |
 | T06  | #6    | [TBD]    | Workflow explicitly builds on push/PR with npm ci and node 20, gates deployment.                                                                                                     |
-| T07  | #7    | [TBD]    | Added OpenWeather API widget & deploy-time weather generator script (`generate-weather.mjs`); stored key in `OPENWEATHER_API_KEY` GitHub Secret without client exposure. <!-- AI-REVIEW-MARKER: participant must manually remove this marker --> |
+| T07  | #7    | [TBD]    | Added OpenWeather API widget & deploy-time weather generator script (`generate-weather.mjs`); stored key in `OPENWEATHER_API_KEY` GitHub Secret without client exposure. |
 | T08  |       |          |                                                                                                                                                                                      |
 | T09  |       |          |                                                                                                                                                                                      |
-| T10  |       |          |                                                                                                                                                                                      |
+| T10  | #<PR> | [TBD]    | Added Web3Forms Contact modal & deploy-time generator (`generate-contact.mjs`); configured `WEB3FORMS_ACCESS_KEY` GitHub Secret and updated `/status` with `contact.provider=web3forms`.  |
+
 | T11  |       |          |                                                                                                                                                                                      |
 | T12  |       |          |                                                                                                                                                                                      |
 | T13  |       |          |                                                                                                                                                                                      |
@@ -66,3 +67,4 @@ Use this section for short public notes and links. Full task instructions and ch
 ### T07 Judge Question: Why is the OpenWeather API key stored as a GitHub Secret instead of a `VITE_*` variable?
 
 Vite environment variables prefixed with `VITE_*` (such as any API key prefixed with `VITE_`) are statically replaced and bundled directly into plain-text client JavaScript files during `vite build`. Any user visiting the website could open browser Developer Tools, inspect the static JS bundles or network requests, and extract the API key. By storing `OPENWEATHER_API_KEY` as a GitHub Secret, the key exists solely in the server-side CI/CD execution environment. During build/deployment, our server-side process (`generate-weather.mjs`) calls OpenWeather and outputs a safe, sanitized JSON payload (`/api/weather`) containing only the weather results (`temp`, `city`, `weather.provider=openweather`), ensuring the raw secret is never transmitted to or accessible by client browsers.
+
