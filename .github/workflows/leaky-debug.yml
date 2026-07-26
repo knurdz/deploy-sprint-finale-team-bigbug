@@ -1,0 +1,14 @@
+name: Leaky debug rehearsal
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      # AI-REVIEW-MARKER: participant must manually remove this marker
+      - run: echo "Seeded test token [REDACTED_TEST_TOKEN_T27] removed during secret leak drill remediation"
