@@ -15,7 +15,7 @@ Complete this file on `main` as tasks are completed. Do not paste secrets, priva
 - Current production commit:
 - Current artifact/image identifier:
 - Current deployment workflow run:
-- Current release manifest path or URL:
+- Current release manifest path or URL: /release.json
 - Notes on live evidence or fallback evidence:
 
 ## Score Summary
@@ -54,7 +54,7 @@ Use this section for short public notes and links. Full task instructions and ch
 | T20  |     |          |                                                                                                                                                                                          |
 | T21  | #20 | [TBD]    | Added explicit `permissions` blocks and `concurrency` groups to workflows to follow least-privilege principles and prevent concurrent deployments. |
 | T22  |     |          |                                                                                                                                                                                          |
-| T23  |     |          |                                                                                                                                                                                          |
+| T23  |     | [TBD]    | Added `release.json` manifest generation to CI and Pages workflows. Served at `/release.json` with commit SHA, artifact ID, workflow run, repository, and branch info. |
 | T24  |     |          |                                                                                                                                                                                          |
 | T25  | [TBD] | [TBD]    | Cherry-picked organizer hotfix commit `2c3b85f` (`2c3b85f29a77e757d2cd361aa1c812c7f76cea99`) from `task-assets/hotfix` to clamp average course progress (`Math.min(100, Math.max(0, average))`) in `team-site/src/utils/metrics.ts`. Used cherry-pick instead of merge to avoid importing diverged branch history and unrelated experimental commits. Verified via `npm run build` and `npm run check:readiness`. AI-REVIEW-MARKER: participant must manually remove this marker |
 | T26  |     |          |                                                                                                                                                                                          |

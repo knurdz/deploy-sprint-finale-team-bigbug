@@ -93,9 +93,23 @@ jobs:
             "provider": "web3forms",
             "configured": true
           },
-          "tasks": ["T01", "T03", "T05", "T07", "T10", "T12", "T14", "T17", "T19","T21"],
+          "tasks": ["T01", "T03", "T05", "T07", "T10", "T12", "T14", "T17", "T19", "T21", "T23"],
             "artifact": "site-dist-${{ steps.params.outputs.sha }}",
             "workflowRun": "${{ steps.params.outputs.run_id }}"
+          }
+          EOF
+
+      - name: Generate release manifest
+        run: |
+          cat <<EOF > team-site/dist/release.json
+          {
+            "commit": "${{ steps.params.outputs.sha }}",
+            "artifact": "site-dist-${{ steps.params.outputs.sha }}",
+            "workflowRun": "${{ steps.params.outputs.run_id }}",
+            "repository": "${{ github.repository }}",
+            "branch": "main",
+            "deployTime": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')",
+            "releaseId": "pages-dist-${{ steps.params.outputs.sha }}"
           }
           EOF
 
