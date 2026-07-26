@@ -5,6 +5,11 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM nginx:alpine
-COPY --from=build /app/dist /usr/share/nginx/html
+FROM node:20-alpine
+WORKDIR /app
+COPY --from=build /app/package.json /app/package-lock.json ./
+RUN npm ci --omit=dev
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/server.js ./
 EXPOSE 80
+CMD ["node", "server.js"]

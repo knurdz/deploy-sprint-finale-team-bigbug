@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # T19 - Post-Deploy Smoke Tests
 set -euo pipefail
 
