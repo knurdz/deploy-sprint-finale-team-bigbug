@@ -5,5 +5,9 @@
     "record_type": "A",
     "dns_target": "20.3.100.134",
     "verification_timestamp": "2026-07-26T11:36:00Z"
+  },
+  "weather": {
+    "provider": "openweather",
+    "configured": true
   }
 }

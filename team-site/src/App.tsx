@@ -12,6 +12,7 @@ import {
 import { CourseCard } from './components/CourseCard';
 import { DeadlineBoard } from './components/DeadlineBoard';
 import { StatCard } from './components/StatCard';
+import { WeatherWidget } from './components/WeatherWidget';
 import { courses } from './data/courses';
 import { deadlineCards } from './data/deadlines';
 import { sprintStats } from './data/stats';
@@ -84,9 +85,12 @@ export function App() {
               before publishing a release.
             </p>
           </div>
-          <div className="heroSignal">
-            <GitBranch size={32} />
-            <span>4 active learning tracks</span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <WeatherWidget />
+            <div className="heroSignal">
+              <GitBranch size={32} />
+              <span>4 active learning tracks</span>
+            </div>
           </div>
         </section>
 

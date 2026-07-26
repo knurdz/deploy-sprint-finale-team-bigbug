@@ -28,11 +28,16 @@ jobs:
       - name: Build
         env:
           VITE_PUBLIC_URL: ${{ vars.PUBLIC_URL || vars.DOMAIN_PUBLIC_URL || secrets.PUBLIC_URL || vars.IP_PUBLIC_URL }}
+          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+          OPENWEATHER_CITY: Colombo,LK
         run: npm run build
         working-directory: team-site
 
       - name: Generate status endpoint
         env:
+          PUBLIC_URL: ${{ secrets.PUBLIC_URL || vars.PUBLIC_URL || vars.DOMAIN_PUBLIC_URL || vars.IP_PUBLIC_URL }}
+          PRIVATE_DEPLOY_TOKEN: ${{ secrets.PRIVATE_DEPLOY_TOKEN }}
+          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
           VITE_PUBLIC_URL: ${{ vars.PUBLIC_URL || vars.DOMAIN_PUBLIC_URL || secrets.PUBLIC_URL || vars.IP_PUBLIC_URL }}
         run: |
           cat <<EOF > team-site/dist/status
@@ -52,7 +57,7 @@ jobs:
               "privateTokenConfigured": true,
               "secretsRedacted": true
             },
-            "tasks": ["T01", "T05", "T06"]
+            "tasks": ["T01", "T05", "T06","T07"]
           }
           EOF
 
