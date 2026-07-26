@@ -10,4 +10,5 @@ jobs:
   debug:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Seeded token DEPLOY_SPRINT_TEST_TOKEN_T23_DO_NOT_USE should not be printed in real workflows"
+      # AI-REVIEW-MARKER: participant must manually remove this marker
+      - run: echo "Seeded test token [REDACTED_TEST_TOKEN_T27] removed during secret leak drill remediation"
