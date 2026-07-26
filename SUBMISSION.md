@@ -38,7 +38,7 @@ Use this section for short public notes and links. Full task instructions and ch
 | T06  | #6    | [TBD]    | CI gate befire deployment                                                                                                                                                            |
 | T07  | #7    | [TBD]    | Added OpenWeather API widget & deploy-time weather generator script (`generate-weather.mjs`); stored key in `OPENWEATHER_API_KEY` GitHub Secret without client exposure.             |
 | T08  |       |          |                                                                                                                                                                                      |
-| T09  |       |          |                                                                                                                                                                                      |
+| T09  | [TBD] | [TBD]    | Resolved merge conflict in deadlines.ts by preserving both deadline cards.                                                                                                           |
 | T10  |       |          |                                                                                                                                                                                      |
 | T11  |       |          |                                                                                                                                                                                      |
 | T12  |       |          |                                                                                                                                                                                      |
@@ -70,7 +70,7 @@ Use this section for short public notes and links. Full task instructions and ch
 | T06  | [TBD] | [TBD]    | Workflow explicitly builds on push/PR with npm ci and node 20, gates deployment.                                                                                                     |
 | T07  |       |          |                                                                                                                                                                                      |
 | T08  |       |          |                                                                                                                                                                                      |
-| T09  |       |          |                                                                                                                                                                                      |
+| T09  | [TBD] | [TBD]    | Resolved merge conflict in deadlines.ts by preserving both deadline cards.                                                                                                           |
 | T10  |       |          |                                                                                                                                                                                      |
 | T11  |       |          |                                                                                                                                                                                      |
 | T12  |       |          |                                                                                                                                                                                      |
@@ -98,3 +98,7 @@ Use this section for short public notes and links. Full task instructions and ch
 ### T07 Judge Question: Why is the OpenWeather API key stored as a GitHub Secret instead of a `VITE_*` variable?
 
 Vite environment variables prefixed with `VITE_*` (such as `VITE_OPENWEATHER_API_KEY`) are statically replaced and bundled directly into plain-text client JavaScript files during `vite build`. Any user visiting the website could open browser Developer Tools, inspect the static JS bundles or network requests, and extract the API key. By storing `OPENWEATHER_API_KEY` as a GitHub Secret, the key exists solely in the server-side CI/CD execution environment. During build/deployment, our server-side process (`generate-weather.mjs`) calls OpenWeather and outputs a safe, sanitized JSON payload (`/api/weather`) containing only the weather results (`temp`, `city`, `weather.provider=openweather`), ensuring the raw secret is never transmitted to or accessible by client browsers.
+
+### T09 Judge Question: Which file conflicted, and what rule did you use to keep both useful changes?
+
+The file that conceptually conflicted was `team-site/src/data/deadlines.ts`. The rule used was to manually combine both array elements so that both the original `repo-setup-checkpoint` and the new `merge-conflict-lab` objects are preserved in the `deadlineCards` array. We ensured neither side was discarded and that no conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`) remained, verifying that the TypeScript syntax was valid and the application builds successfully.
